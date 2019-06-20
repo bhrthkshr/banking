@@ -1,4 +1,7 @@
 angular.module("app", ['angularUtils.directives.dirPagination']).controller("main.control", function($scope, $http, $filter) {
+  // '$cacheFactory'
+  // var $httpDefaultCache = $cacheFactory.get('$http');
+  // var cachedData = $httpDefaultCache.get('https://vast-shore-74260.herokuapp.com/banks');
 
   $scope.cities = ["BANGALORE", "CHENNAI", "MUMBAI", "PUNE", "DELHI"];
   $scope.select_city = $scope.cities[0];
@@ -21,7 +24,7 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
     }
     for (var i = 0; i < $scope.filtered.length; i++) {
       if ($scope.filtered[i].ifsc == localStorage.getItem(i + 1)) {
-        console.log('matched--------',$scope.filtered[i].ifsc);
+        console.log('matched--------', $scope.filtered[i].ifsc);
         $scope.filtered[i].fav = true;
       }
     }

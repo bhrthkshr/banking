@@ -29,11 +29,12 @@
         </div>
         <div class="form-group">
           <label>Select City</label>
-          <select class="form-control" ng-model="select_city" ng-options="c for c in cities" ng-click=""></select>
+          <select class="form-control" ng-model="select_city" ng-options="c for c in cities" ></select>
         </div>
         <div class="form-group">
           <label>List Size</label>
-          <select class="form-control" name="" ng-model="listsize" ng-options="l for l in list" ng-click=""></select>
+          <select class="form-control" name="" ng-model="listsize" ng-options="l for l in list" ng-disabled="!searching"></select>
+          <p class="help-block">List Size for Search Results</p>
         </div>
         <hr>
       </div>
