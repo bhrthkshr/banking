@@ -8,7 +8,34 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
   $scope.idx = 0;
   $scope.loaded = false;
   $scope.blist = [];
+  $scope.filtered = [];
 
+  $scope.searching = false;
+  $scope.$watch('query', function(val) {
+    if (val) {
+      $scope.searching = true;
+      $scope.filtered = $filter('filter')($scope.bankdata, val);
+    }
+    if (val == "") {
+      $scope.searching = false;
+    }
+    for (var i = 0; i < $scope.filtered.length; i++) {
+      if ($scope.filtered[i].ifsc == localStorage.getItem(i + 1)) {
+        console.log('matched--------',$scope.filtered[i].ifsc);
+        $scope.filtered[i].fav = true;
+      }
+    }
+  });
+
+  $scope.add_fav = function(val, i) {
+    if ($scope.filtered[i - 1].fav == true) {
+      $scope.filtered[i - 1].fav = false;
+      localStorage.removeItem(i);
+    } else {
+      localStorage.setItem(i, val);
+      $scope.filtered[i - 1].fav = true;
+    }
+  }
 
   $scope.$watch('select_city', function(newval) {
     $scope.loaded = false;
@@ -22,32 +49,14 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
       $scope.loaded = true;
       for (var i = 0; i < $scope.bankdata.length; i++) {
         if ($scope.blist.indexOf($scope.bankdata[i].bank_name) == -1) {
-            $scope.blist.push($scope.bankdata[i].bank_name);
+          $scope.blist.push($scope.bankdata[i].bank_name);
         }
+        $scope.filtered.push($scope.bankdata[i]);
       }
     })
   });
 
 
-  $scope.searching = false;
-  $scope.$watch('query', function(val) {
-    if (val) {
-      $scope.searching = true;
-      $scope.filtered = $filter('filter')($scope.bankdata, val);
-    }
-    if (val == "") {
-      $scope.searching = false;
-    }
-  });
 
-  $scope.add_fav = function(val, i) {
-    if ($scope.filtered[i - 1].fav == true) {
-      $scope.filtered[i - 1].fav = false;
-      localStorage.removeItem(i);
-    } else {
-      localStorage.setItem(i, val);
-      $scope.filtered[i - 1].fav = true;
-    }
-  }
 
 });
