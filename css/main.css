@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  font-family: Arial
+}
+
+
+.loader:before{
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  height: 70px;
+  width: 70px;
+  margin-top: -30px;
+  margin-left: -30px;
+  border-radius: 50%;
+  border-top: 4px solid #59a3f0;
+  border-right: 2px solid transparent;
+  animation: loader 0.7s linear infinite;
+}
+
+@keyframes loader {
+  to{
+    transform: rotate(360deg);
+  }
+
+}
+
+/* css for table */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+td {
+  font-size: 12px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+/* css for input boxes */
+.input-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #eee;
+  height: 50px;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.input-text {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  color: #000;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 30 px;
+  width: 440px;
+}
+
+.custom {
+  width: 200px;
+  float: right;
+}
+
+.card{
+  background-color: #fff;
+  box-shadow: 0px 0px 1px 0px;
+  padding:10px;
+  border-radius: 15px;
+}
+.card:hover{
+  background-color: #e0e0e0;
+}
+
+/* css for dropdown */
+.droper {
+  position: relative;
+  background: #eee;
+  outline: none;
+  border: none;
+  width: 260px;
+  height: 45px;
+  border-radius: 20px;
+}
+
+.droper option {
+  background: #eee;
+  width: 130px;
+  height: 25px;
+  border-radius: 10px;
+}
+
+.fav {
+  color: #4b4b4b;
+  cursor: pointer;
+  font-size: 17px !important;
+}
+
+.fav:hover {
+  color: #37b8e0;
+}
+
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .droper {
+    width: 100%;
+    height: 50px;
+  }
+
+  .drop_container {
+    padding: 0px !important;
+  }
+
+  .input-box {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .mobile_view {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 0px !important;
+  }
+}
+
+/* @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .droper {
+    width: 100%;
+    height: 50px;
+  }
+
+  .drop_container {
+    padding: 0px !important;
+    width:100%;
+  }
+
+  .input-box {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .mobile_view {
+    width:100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 0px !important;
+  }
+} */
