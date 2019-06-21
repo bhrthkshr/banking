@@ -39,10 +39,10 @@
         <hr>
       </div>
     </div>
+    <div class="col-md-12 text-center">
+      <h4>List of Banks in <span style="color:#4278f0">{{select_city}}</span></h4>
+    </div>
     <!-- <div class="list_container" ng-if="!searching">
-      <div class="col-md-12 text-center">
-        <h4>List of Banks in <span style="color:#4278f0">{{select_city}}</span></h4>
-      </div>
       <ul class="list-unstyled" ng-if="loaded">
         <li ng-repeat="c in blist">
           <div class="col-md-3" style="margin:10px 0px;min-height:60px;">
@@ -56,7 +56,6 @@
     <div class="col-md-12" style="position:relative;margin-top:30px;">
       <div ng-if="!loaded" class="loader"></div>
     </div>
-
 
     <div class="col-md-12" style="margin-top:20px;padding:0px;margin-bottom:30px;">
       <div class="col-md-12">
@@ -75,6 +74,7 @@
         <table>
           <tr>
             <th>slno.</th>
+            <th>temp key</th>
             <th>Bank id</th>
             <th>Bank Name</th>
             <th>IFSC</th>
@@ -82,10 +82,11 @@
           </tr>
           <tr dir-paginate="f in filtered | itemsPerPage:listsize track by $index" current-page="cpage">
             <td>{{idx = ((cpage-1)*listsize + $index+1)}}</td>
+            <td>{{f.temp}}</td>
             <td>{{f.bank_id}}</td>
             <td>{{f.bank_name}}</td>
             <td>{{f.ifsc}}</td>
-            <td ng-click="add_fav(f.ifsc,idx)">
+            <td ng-click="add_fav(f.ifsc,f.temp)">
               <div class="text-center">
                 <i class="fa fa-heart fav" ng-if="!f.fav"></i>
                 <i class="fa fa-heart fav" ng-if="f.fav" style="color:red;"></i>
