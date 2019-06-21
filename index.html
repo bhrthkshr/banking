@@ -33,13 +33,13 @@
         </div>
         <div class="form-group">
           <label>List Size</label>
-          <select class="form-control" name="" ng-model="listsize" ng-options="l for l in list" ng-disabled="!searching"></select>
+          <select class="form-control" name="" ng-model="listsize" ng-options="l for l in list"></select>
           <p class="help-block">List Size for Search Results</p>
         </div>
         <hr>
       </div>
     </div>
-    <div class="list_container" ng-if="!searching">
+    <!-- <div class="list_container" ng-if="!searching">
       <div class="col-md-12 text-center">
         <h4>List of Banks in <span style="color:#4278f0">{{select_city}}</span></h4>
       </div>
@@ -52,26 +52,26 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
     <div class="col-md-12" style="position:relative;margin-top:30px;">
       <div ng-if="!loaded" class="loader"></div>
     </div>
 
 
-    <div class="col-md-12" style="margin-top:20px;padding:0px;margin-bottom:30px;" ng-if="searching">
+    <div class="col-md-12" style="margin-top:20px;padding:0px;margin-bottom:30px;">
       <div class="col-md-12">
         <div class="col-md-2">
-          <span style="color:#e95c3d;font-size:16px;">*searching for "{{query}}"</span>
+          <span style="color:#e95c3d;font-size:16px;" ng-if="searching">*searching for "{{query}}"</span>
         </div>
         <div class="col-md-8 text-center">
           <dir-pagination-controls max-size="10" direction-links="true" boundary-links="false">
           </dir-pagination-controls>
         </div>
         <div class="col-md-2 text-center">
-          <span style="color:#2279fb">Found <b>{{filtered.length}}</b> Results Matching Your Query</span>
+          <span style="color:#2279fb" ng-if="searching">Found <b>{{filtered.length}}</b> Results Matching Your Query</span>
         </div>
       </div>
-      <div class="col-md-12 table_container">
+      <div class="col-md-12 table_container" ng-if="loaded">
         <table>
           <tr>
             <th>slno.</th>
