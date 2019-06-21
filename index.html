@@ -74,7 +74,7 @@
         <table>
           <tr>
             <th>slno.</th>
-            <th>temp key</th>
+
             <th>Bank id</th>
             <th>Bank Name</th>
             <th>IFSC</th>
@@ -82,7 +82,7 @@
           </tr>
           <tr dir-paginate="f in filtered | itemsPerPage:listsize track by $index" current-page="cpage">
             <td>{{idx = ((cpage-1)*listsize + $index+1)}}</td>
-            <td>{{f.temp}}</td>
+         
             <td>{{f.bank_id}}</td>
             <td>{{f.bank_name}}</td>
             <td>{{f.ifsc}}</td>
