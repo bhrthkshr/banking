@@ -58,7 +58,6 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
           $scope.filtered[i].fav = true;
         }
       }
-      // console.log($scope.filtered[0].temp);
     })
   });
 
