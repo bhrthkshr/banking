@@ -60,7 +60,6 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
       }
       for (var i = 0; i < $scope.filtered.length; i++) {
         if ($scope.filtered[i].ifsc == localStorage.getItem(i + 1 + $scope.city)) {
-          console.log("matched----", $scope.filtered[i].ifsc,"from city ---",$scope.city);
           $scope.filtered[i].fav = true;
         }
       }
