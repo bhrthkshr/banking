@@ -4,11 +4,9 @@
 <head>
   <meta charset="utf-8">
   <title>fyle</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link data-require="bootstrap-css@*" data-server="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 </head>
 
@@ -62,7 +60,7 @@
         <div class="col-md-2">
           <span style="color:#e95c3d;font-size:16px;" ng-if="searching">*searching for "{{query}}"</span>
         </div>
-        <div class="col-md-8 text-center">
+        <div class="col-md-8 text-center" ng-if="loaded">
           <dir-pagination-controls max-size="10" direction-links="true" boundary-links="false">
           </dir-pagination-controls>
         </div>
@@ -74,7 +72,6 @@
         <table>
           <tr>
             <th>slno.</th>
-            <th>temp key</th>
             <th>Bank id</th>
             <th>Bank Name</th>
             <th>IFSC</th>
@@ -82,11 +79,10 @@
           </tr>
           <tr dir-paginate="f in filtered | itemsPerPage:listsize track by $index" current-page="cpage">
             <td>{{idx = ((cpage-1)*listsize + $index+1)}}</td>
-            <td>{{f.temp}}</td>
             <td>{{f.bank_id}}</td>
             <td>{{f.bank_name}}</td>
             <td>{{f.ifsc}}</td>
-            <td ng-click="add_fav(f.ifsc,f.temp)">
+            <td ng-click="add_fav(f.ifsc,f.temp,idx)">
               <div class="text-center">
                 <i class="fa fa-heart fav" ng-if="!f.fav"></i>
                 <i class="fa fa-heart fav" ng-if="f.fav" style="color:red;"></i>
@@ -100,9 +96,9 @@
 </body>
 <script src="js/jquery.min.js" charset="utf-8"></script>
 <script src="js/angular.min.js" charset="utf-8"></script>
-<script src="js/bootstrap.min.js" charset="utf-8"></script>
 <script src="js/dirPagination.js" charset="utf-8"></script>
 <script src="js/angular-filter.min.js" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" charset="utf-8"></script>
 <script src="js/main.js" charset="utf-8"></script>
 
 </html>

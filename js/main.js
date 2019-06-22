@@ -18,23 +18,29 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
     if (val) {
       $scope.searching = true;
       $scope.filtered = $filter('filter')($scope.bankdata, val);
+      for (var i = 0; i < $scope.filtered.length; i++) {
+        if ($scope.filtered[i].ifsc == localStorage.getItem(i + 1)) {
+          $scope.filtered[i].fav = true;
+        }
+      }
     }
     if (val == "") {
       $scope.searching = false;
     }
   });
 
-  $scope.add_fav = function(val, i) {
-    if ($scope.filtered[i-1].fav == true) {
-      $scope.filtered[i-1].fav = false;
-      localStorage.removeItem(i);
+  $scope.add_fav = function(val, key, idx) {
+    if ($scope.filtered[idx - 1].fav == true) {
+      localStorage.removeItem(key);
+      $scope.filtered[idx - 1].fav = false;
     } else {
-      localStorage.setItem(i, val);
-      $scope.filtered[i-1].fav = true;
+      localStorage.setItem(key, val);
+      $scope.filtered[idx - 1].fav = true;
     }
   }
 
   $scope.$watch('select_city', function(newval) {
+    $scope.filtered = [];
     $scope.loaded = false;
     $scope.city = newval;
     $http({
@@ -48,21 +54,17 @@ angular.module("app", ['angularUtils.directives.dirPagination']).controller("mai
         // if ($scope.blist.indexOf($scope.bankdata[i].bank_name) == -1) {
         //   $scope.blist.push($scope.bankdata[i].bank_name);
         // }
-        $scope.bankdata[i].temp = i+1;
+        $scope.bankdata[i].temp = i + 1 + $scope.city;
+        $scope.bankdata[i].fav = false;
         $scope.filtered.push($scope.bankdata[i]);
       }
       for (var i = 0; i < $scope.filtered.length; i++) {
-        // console.log(localStorage.getItem(i+1),i,$scope.filtered[i].ifsc);
-        if ($scope.filtered[i].ifsc == localStorage.getItem(i+1)) {
-          // console.log('matched--------', $scope.filtered[i].ifsc);
+        if ($scope.filtered[i].ifsc == localStorage.getItem(i + 1 + $scope.city)) {
+          console.log("matched----", $scope.filtered[i].ifsc,"from city ---",$scope.city);
           $scope.filtered[i].fav = true;
         }
       }
-      // console.log($scope.filtered[0].temp);
     })
   });
-
-
-
 
 });
